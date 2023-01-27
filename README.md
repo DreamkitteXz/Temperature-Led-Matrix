@@ -25,7 +25,7 @@ Voce irá aprender:
     <h3>Conexões</h3>
       <p>Conecte as matrizes de LED e o termistor ao Arduino seguindo este diagrama:>
      <p align='center'><img src="https://www.circuitbasics.com/wp-content/uploads/2020/06/Four-Matrix-and-Thermistor-Wiring-Diagram-1451x1536.png" alt="Screen" width="725" height="768"></p>
-     <p><b>Fonte:</b><a hrfe="https://www.circuitbasics.com/how-to-setup-an-led-matrix-on-the-arduino/">https://www.circuitbasics.com/how-to-setup-an-led-matrix-on-the-arduino/</a></p>
+     <p align='center'-to-setup-an-led-matrix-on-the-arduino/"><b>Fonte</b></a></p>
 <h3 align='center'>Letreiro</h3>
 <p> Logo abaixo tem o código de um letreiro que mostra um o texto que você quiser, mas antes de executarmos esse código temos que instalar a biblioteca <code>Max72xxPanel.h</code> para o código funcionar. Para fazer isso é muito facil, basta você clicar <a href="https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip">nesse link</a> para baixar a pasta compactada da biblioteca, uma vez feito isso vamos para o Arduino IDE e procurar por <code>Sketch</code> > <code>Incluir bibliioteca</code> > <code>Adicionar .ZIP</code> .
 </p>
