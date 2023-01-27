@@ -29,62 +29,86 @@ Voce irá aprender:
 <h3 align='center'>Código Para Exibição De Dados Do Sensor Em Uma Matriz De LED</h3>
 <p> Logo abaixo tem o código que mostra a temperatura, mas antes de executarmos esse código temos que instalar algumas bibliotecas, <code>Max72xxPanel</code> <code> SPI</code> <code> Adafruit GFX Library</code> para o código funcionar. Irei demonstrar como instalar cada uma delas.
 </p> <h4 align='center'>Max72xxPanel</h4><p>Para instalar essa biblioteca clique <a href="https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip">nesse link</a> e irá baixar a pasta compactada da biblioteca, uma vez feito isso vamos para o Arduino IDE e procurar por <code>Sketch</code> > <code>Incluir bibliioteca</code> > <code>Adicionar .ZIP</code> .
+<p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/c.png" alt="Screen" width="641" height="357"></p>
+<p> Procure pela pasta baixada e clique em <code>abrir</code></p>
+<p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/pl.png" alt="Screen" width="800" height="650"></p>
+ <h4 align='center'>Adafruit GFX Library</h4>
+<p> Agora iremos instalar outra biblioteca <code> Adafruit GFX Library</code>, dessa vez iremos utilizar outra forma de instalar, basta clicar em <code>Ferramentas</code> > <code>Gerenciar bibliotecas</code>.
 </p>
+<p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/K.png" alt="Screen" width="584" height="408"></p>
+<p> Procure por <code> Adafruit GFX Library</code> e instale.</p>
+<p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/sa.png" alt="Screen" width="799" height="464"></p>
+</p>
+<h4 align='center'>SPI</h4>
+<p> A ultima blibioteca <code> SPI</code>, vamos repitir o ultimo processo de instalar, basta clicar em <code>Ferramentas</code> > <code>Gerenciar bibliotecas</code>.
+</p>
+<p> Procure por <code> SPI</code> e instale.</p>
+<p align='center'><img src="" alt="Screen" width="799" height="464"></p>
 
+<h3>Código</h3>
+<p align='center'><pre><code>#include <SPI.h>
+#include <Adafruit_GFX.h>
+#include <Max72xxPanel.h>
 
-<p align='center'><pre><code >
-#include "SPI.h"
-#include "Adafruit_GFX.h"
-#include "Max72xxPanel.h"
- 
-int pinCS = 10; // Conecte CS a este pino, DIN(11) a MOSI e CLK(13) a SCK
-int numberOfHorizontalDisplays = 1;
-int numberOfVerticalDisplays = 3;
- 
+int pinCS = 10;
+//Din conectado ao pino 11
+//CLK conectado ao pino 13
+
+int numberOfHorizontalDisplays = 2t ;
+int numberOfVerticalDisplays = 1;
+
+int thermistorPin = A0;
+float R1 = 10000;
+float R2, logR2, logR2Cube, tK, tC, tF; 
+float A = 9.76086e-04, B = 2.38890e-04, C = 2.27e-07;
+
 Max72xxPanel matrix = Max72xxPanel(pinCS, numberOfHorizontalDisplays, numberOfVerticalDisplays);
- 
-String txtDisplay = "ETEFMC";
-int width = 5 + 1; // A largura da fonte é de 5 pixels
- 
-void setup() 
-{
- 
-  matrix.setIntensity(15); // Use um valor entre 0 e 15 para brilho
-  matrix.setPosition(0, 0, 0); // A primeira exibição está em <0, 0>
-  matrix.setPosition(1, 0, 1); // A segunda tela está em <1, 0>
-  matrix.setPosition(2, 0, 2); // A terceira tela está em <2, 0>
-  matrix.setRotation(1);    // A mesma espera para a última exibição
- matrix.fillScreen(LOW);
- matrix.write();
- delay(400);
- matrix.print("ETE");
- matrix.write();
- delay(2000);
+
+int wait = 50;
+int spacer = 1;
+int width = 5 + spacer;
+
+void setup() {
+  matrix.setIntensity(7);
+  matrix.setRotation(1, 2);
+  matrix.setRotation(3, 2);
 }
- 
-void loop() 
-{
-  for ( int i = 0 ; i < width * txtDisplay.length() + matrix.width() - 1 - 1; i++ ) 
-  {
+
+void loop() {
+
+  int Vout = analogRead(thermistorPin);
+
+  R2 = R1 * (1023.0 / Vout - 1.0);
+  logR2 = log(R2);
+  logR2Cube = pow(logR2, 3);
+  tK = (1.0 / (A + B * logR2 + C * logR2Cube));
+  tC = tK - 273.15;
+  //tF = (tC * 9.0) / 5.0 + 32.0; 
+
+  String tape = "Temp: " + String(tC) + " C";
+
+  for (int i = 0 ; i < width * tape.length() + matrix.width() - 1 - spacer; i++ ) {
     matrix.fillScreen(LOW);
- 
+
     int letter = i / width;
     int x = (matrix.width() - 1) - i % width;
-    int y = (matrix.height() - 8) / 2; // centraliza o texto verticalmente
- 
-    while ( x + width - 1 >= 0 && letter >= 0 ) 
-    {
-      if ( letter < txtDisplay.length() ) 
-      {
-        matrix.drawChar(x, y, txtDisplay[letter], HIGH, LOW, 1);
+    int y = (matrix.height() - 8) / 2;
+
+    while ( x + width - spacer >= 0 && letter >= 0 ) {
+      if ( letter < tape.length() ) {
+        matrix.drawChar(x, y, tape[letter], HIGH, LOW, 1);
       }
+
       letter--;
       x -= width;
     }
- 
-    matrix.write(); // Envia bitmap para exibição
-    delay(100);
+
+    matrix.write();
+    delay(wait);
   }
 }</code></pre></p>
 <p>Espere o seguinte resultado:</p>
-<p align='center'><img src="Images\ETEFMC.gif" alt="Screen" width="600" height="338">
+<p align='center'><img src="" alt="Screen" width="600" height="338">
+<h3 align='center'>
+  Explicando o código
+</h3>
