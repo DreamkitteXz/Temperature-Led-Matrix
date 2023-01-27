@@ -26,18 +26,11 @@ Voce irá aprender:
       <p>Conecte as matrizes de LED e o termistor ao Arduino seguindo este diagrama:>
      <p align='center'><img src="https://www.circuitbasics.com/wp-content/uploads/2020/06/Four-Matrix-and-Thermistor-Wiring-Diagram-1451x1536.png" alt="Screen" width="725" height="768"></p>
      <p align='center'><a href="https://www.circuitbasics.com/how-to-setup-an-led-matrix-on-the-arduino/"><b>Fonte</b></a></p>
-<h3 align='center'>Letreiro</h3>
-<p> Logo abaixo tem o código de um letreiro que mostra um o texto que você quiser, mas antes de executarmos esse código temos que instalar a biblioteca <code>Max72xxPanel.h</code> para o código funcionar. Para fazer isso é muito facil, basta você clicar <a href="https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip">nesse link</a> para baixar a pasta compactada da biblioteca, uma vez feito isso vamos para o Arduino IDE e procurar por <code>Sketch</code> > <code>Incluir bibliioteca</code> > <code>Adicionar .ZIP</code> .
+<h3 align='center'>Código Para Exibição De Dados Do Sensor Em Uma Matriz De LED</h3>
+<p> Logo abaixo tem o código que mostra a temperatura, mas antes de executarmos esse código temos que instalar algumas bibliotecas, <code>Max72xxPanel</code> <code> SPI</code> <code> Adafruit GFX Library</code> para o código funcionar. Irei demonstrar como instalar cada uma delas.
+</p> <h4 align='center'>Max72xxPanel</h4><p>Para instalar essa biblioteca clique <a href="https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip">nesse link</a> e irá baixar a pasta compactada da biblioteca, uma vez feito isso vamos para o Arduino IDE e procurar por <code>Sketch</code> > <code>Incluir bibliioteca</code> > <code>Adicionar .ZIP</code> .
 </p>
-<p align='center'><img src="images\c.png" alt="Screen" width="641" height="357"></p>
-<p> Procure pela pasta baixada e clique em <code>abrir</code></p>
-<p align='center'><img src="images\pl.png" alt="Screen" width="800" height="650"></p>
-<p> Agora iremos instalar outra biblioteca <code> Adafruit GFX Library</code>, dessa vez iremos utilizar outra forma de instalar, basta clicar em <code>Ferramentas</code> > <code>Gerenciar bibliotecas</code>.
-</p>
-<p align='center'><img src="images\K.png" alt="Screen" width="584" height="408"></p>
-<p> Procure por <code> Adafruit GFX Library</code> e instale.</p>
-<p align='center'><img src="images\sa.png" alt="Screen" width="799" height="464"></p>
-<p> Pronto agora uma vez que as conexões estão feitas execute o código abaixo:</p>
+
 
 <p align='center'><pre><code >
 #include "SPI.h"
