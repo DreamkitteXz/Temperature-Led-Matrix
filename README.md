@@ -27,7 +27,7 @@ Voce irá aprender:
      <p align='center'><img src="https://www.circuitbasics.com/wp-content/uploads/2020/06/Four-Matrix-and-Thermistor-Wiring-Diagram-1451x1536.png" alt="Screen" width="725" height="768"></p>
      <p align='center'><a href="https://www.circuitbasics.com/how-to-setup-an-led-matrix-on-the-arduino/"><b>Fonte</b></a></p>
 <h3 align='center'>Código Para Exibição De Dados Do Sensor Em Uma Matriz De LED</h3>
-<p> Logo abaixo tem o código que mostra a temperatura, mas antes de executarmos esse código temos que instalar algumas bibliotecas, <code>Max72xxPanel</code> <code> SPI</code> <code> Adafruit GFX Library</code> para o código funcionar. Irei demonstrar como instalar cada uma delas.
+<p> Logo abaixo tem o código que mostra a temperatura, mas antes de executarmos esse código temos que instalar duas bibliotecas, <code>Max72xxPanel</code> <code> Adafruit GFX Library</code> para o código funcionar. Irei demonstrar como instalar cada uma delas.
 </p> <h4 align='center'>Max72xxPanel</h4><p>Para instalar essa biblioteca clique <a href="https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip">nesse link</a> e irá baixar a pasta compactada da biblioteca, uma vez feito isso vamos para o Arduino IDE e procurar por <code>Sketch</code> > <code>Incluir bibliioteca</code> > <code>Adicionar .ZIP</code> .
 <p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/c.png" alt="Screen" width="641" height="357"></p>
 <p> Procure pela pasta baixada e clique em <code>abrir</code></p>
@@ -39,11 +39,6 @@ Voce irá aprender:
 <p> Procure por <code> Adafruit GFX Library</code> e instale.</p>
 <p align='center'><img src="https://github.com/DreamkitteXz/8x8--LED-MATRIX-LETREIRO/raw/main/images/sa.png" alt="Screen" width="799" height="464"></p>
 </p>
-<h4 align='center'>SPI</h4>
-<p> A ultima blibioteca <code> SPI</code>, vamos repitir o ultimo processo de instalar, basta clicar em <code>Ferramentas</code> > <code>Gerenciar bibliotecas</code>.
-</p>
-<p> Procure por <code> SPI</code> e instale.</p>
-<p align='center'><img src="" alt="Screen" width="799" height="464"></p>
 
 <h3>Código</h3>
 <p align='center'><pre><code>#include "SPI.h"
@@ -108,7 +103,7 @@ void loop() {
   }
 }</code></pre></p>
 <p>Espere o seguinte resultado:</p>
-<p align='center'><img src="" alt="Screen" width="600" height="338">
+<p align='center'><img src="Images\ezgif.com-gif-maker (5).gif" alt="Screen" width="600" height="338">
 <h3 align='center'>
   Explicando o código
 </h3>
