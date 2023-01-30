@@ -109,6 +109,6 @@ void loop() {
 </h3>
 <p>Primeiro, declaramos as variáveis ​​flutuantes para os cálculos do termistor.
 
-No <code>loop()</code>, as primeiras cinco linhas de código fazem uma leitusra analógica do thermistorPin, executam um cálculo para converter o valor ADC em Celsius e armazenam a temperatura em uma variável chamada <code>tC</code>.
+No <code>loop()</code>, as primeiras cinco linhas de código fazem uma leitura analógica do thermistorPin, executam um cálculo para converter o valor ADC em Celsius e armazenam a temperatura em uma variável chamada <code>tC</code>.
 
 Em seguida, criamos o objeto <code>tape</code> da classe <code>String</code> e o definimos igual a uma string de texto regular que diz <code>Temp:</code> . As strings podem ser adicionadas ou “concatenadas” entre si com um sinal de +. Portanto, tudo o que precisamos fazer é concatenar a variável <code>tC</code> à string de texto. Mas como a variável <code>tC</code>é float, precisamos convertê-la em uma string antes que ela possa ser impressa. Podemos fazer isso com <code>String()</code> e o nome da variável entre parênteses. Também queremos as unidades de temperatura, então vamos concatenar a <code>C</code> para Celsius depois que a variável <code>tC</code> for impressa.</p>
