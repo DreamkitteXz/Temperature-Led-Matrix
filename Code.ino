@@ -67,6 +67,5 @@ while ( x + width - spacer >= 0 && letter >= 0 ) {
 
 matrix.write();
 delay(wait);
-
 }
 }
